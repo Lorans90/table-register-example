@@ -1,0 +1,37 @@
+<nz-table
+  #virtualTable
+  nzVirtualScroll
+  [nzVirtualItemSize]="54"
+  [nzData]="listOfData"
+  [nzVirtualForTrackBy]="trackByIndex"
+  [nzFrontPagination]="false"
+  [nzShowPagination]="false"
+  [nzScroll]="{ x: '1300px', y: '500px' }"
+>
+  <thead
+    (nzSortChange)="sort($event)"
+    nzSingleSort
+  >
+    <tr>
+      <th
+        nzShowSort
+        [nzSortKey]="column.key"
+        nzWidth="100px"
+        *ngFor="let column of config.columns"
+      >
+        {{ column.key }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-template
+      nz-virtual-scroll
+      let-data
+      let-index="index"
+    >
+      <tr>
+        <td *ngFor="let column of config.columns">{{data[column.key]}}</td>
+      </tr>
+    </ng-template>
+  </tbody>
+</nz-table>
