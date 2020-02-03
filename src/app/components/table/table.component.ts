@@ -3,12 +3,6 @@ import { NzTableComponent } from 'ng-zorro-antd';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-export interface VirtualDataInterface {
-  index: number;
-  name: string;
-  age: number;
-  address: string;
-}
 
 @Component({
   selector: 'app-table',
@@ -22,10 +16,9 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('virtualTable', { static: false }) nzTableComponent: NzTableComponent;
   private destroy$ = new Subject();
-  listOfData: VirtualDataInterface[] = [];
+  listOfData: any[] = [];
   sortName: string | null = null;
   sortValue: string | null = null;
-  columns: string[];
   constructor() { }
 
   sort(sort: { key: string; value: string }): void {
@@ -56,7 +49,7 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
     this.nzTableComponent.cdkVirtualScrollViewport.scrollToIndex(index);
   }
 
-  trackByIndex(_: number, data: VirtualDataInterface): number {
+  trackByIndex(_: number, data: any): number {
     return data.index;
   }
 
