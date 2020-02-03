@@ -26,12 +26,9 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
   sortName: string | null = null;
   sortValue: string | null = null;
   columns: string[];
-  mapOfSort: { [key: string]: string | null } = {};
   constructor() { }
 
   sort(sort: { key: string; value: string }): void {
-
-    console.log(sort)
     this.sortName = sort.key;
     this.sortValue = sort.value;
     this.search();
@@ -41,7 +38,6 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
   search(): void {
     const data = this.listOfData;
     if (this.sortName && this.sortValue) {
-      console.log('im here');
       this.listOfData = [...data.sort((a, b) =>
         this.sortValue === 'ascend'
           ? a[this.sortName] > b[this.sortName]
@@ -65,8 +61,6 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.config.columns.forEach(column => this.mapOfSort[column.key] = null);
-    console.log(this.mapOfSort)
     this.listOfData = this.datasource;
   }
 
