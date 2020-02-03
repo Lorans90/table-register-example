@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -14,15 +14,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.initForm();
   }
-
-  confirmationValidator = (control: FormControl): { [s: string]: boolean } => {
-    if (!control.value) {
-      return { required: true };
-    } else if (control.value !== this.form.controls.password.value) {
-      return { confirm: true, error: true };
-    }
-    return {};
-  };
 
   initForm() {
     this.form = this.formBuilder.group({
